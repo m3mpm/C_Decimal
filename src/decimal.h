@@ -8,17 +8,17 @@
 #define EXP_MASK 0x00ff0000;
 #define NULL_SCALE 0x80000000;
 #define NULL_MASK 0x00000000;
-#define DECIMAL_NORMAL {{0, 0, 0, 0}, my_NORMAL_VALUE};
-#define DECIMAL_NORMAL_SUPER {{0, 0, 0, 0, 0, 0, 0}, my_NORMAL_VALUE};
+#define DECIMAL_NORMAL {{0, 0, 0, 0}, MY_NORMAL_VALUE};
+#define DECIMAL_NORMAL_SUPER {{0, 0, 0, 0, 0, 0, 0}, MY_NORMAL_VALUE};
 
 enum { LOW, MID, HIGH, SCALE };
 enum { NLOW, NMID, NHIGH, SLOW, SMID, SHIGH, SSCALE };
 
 typedef enum {
-  my_NORMAL_VALUE = 0,
-  my_INFINITY = 1,
-  my_NEGATIVE_INFINITY = 2,
-  my_NAN = 3
+  MY_NORMAL_VALUE = 0,
+  MY_INFINITY = 1,
+  MY_NEGATIVE_INFINITY = 2,
+  MY_NAN = 3
 } value_type_t;
 
 typedef struct {

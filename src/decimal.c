@@ -3,20 +3,20 @@
 /******* Арифметические операторы *******/
 my_decimal my_add(my_decimal dec1, my_decimal dec2) {
   my_decimal dec = DECIMAL_NORMAL;
-  if (dec1.value_type == my_NAN || dec2.value_type == my_NAN ||
-      (dec1.value_type == my_INFINITY &&
-       dec2.value_type == my_NEGATIVE_INFINITY) ||
-      (dec1.value_type == my_NEGATIVE_INFINITY &&
-       dec2.value_type == my_INFINITY)) {
-      dec.value_type = my_NAN;
-  } else if (dec1.value_type == my_INFINITY ||
-             dec2.value_type == my_INFINITY) {
-      dec.value_type = my_INFINITY;
-  } else if (dec1.value_type == my_NEGATIVE_INFINITY ||
-             dec2.value_type == my_NEGATIVE_INFINITY) {
-      dec.value_type = my_NEGATIVE_INFINITY;
-  } else if (dec1.value_type == my_NORMAL_VALUE &&
-             dec2.value_type == my_NORMAL_VALUE) {
+  if (dec1.value_type == MY_NAN || dec2.value_type == MY_NAN ||
+      (dec1.value_type == MY_INFINITY &&
+       dec2.value_type == MY_NEGATIVE_INFINITY) ||
+      (dec1.value_type == MY_NEGATIVE_INFINITY &&
+       dec2.value_type == MY_INFINITY)) {
+      dec.value_type = MY_NAN;
+  } else if (dec1.value_type == MY_INFINITY ||
+             dec2.value_type == MY_INFINITY) {
+      dec.value_type = MY_INFINITY;
+  } else if (dec1.value_type == MY_NEGATIVE_INFINITY ||
+             dec2.value_type == MY_NEGATIVE_INFINITY) {
+      dec.value_type = MY_NEGATIVE_INFINITY;
+  } else if (dec1.value_type == MY_NORMAL_VALUE &&
+             dec2.value_type == MY_NORMAL_VALUE) {
       my_decimal_super dec1_s = my_convert_to_super(dec1);
       my_decimal_super dec2_s = my_convert_to_super(dec2);
       int dec1_s_sign = my_getSign(dec1);
@@ -48,27 +48,27 @@ my_decimal my_add(my_decimal dec1, my_decimal dec2) {
 
 my_decimal my_sub(my_decimal dec1, my_decimal dec2) {
   my_decimal dec = DECIMAL_NORMAL;
-  if (dec1.value_type == my_NAN || dec2.value_type == my_NAN ||
-      (dec1.value_type == my_INFINITY && dec2.value_type == my_INFINITY) ||
-      (dec1.value_type == my_NEGATIVE_INFINITY &&
-       dec2.value_type == my_NEGATIVE_INFINITY)) {
-    dec.value_type = my_NAN;
-  } else if ((dec1.value_type == my_INFINITY &&
-              dec2.value_type == my_NEGATIVE_INFINITY) ||
-             (dec1.value_type == my_INFINITY &&
-              dec2.value_type == my_NORMAL_VALUE) ||
-             (dec1.value_type == my_NORMAL_VALUE &&
-              dec2.value_type == my_NEGATIVE_INFINITY)) {
-    dec.value_type = my_INFINITY;
-  } else if ((dec1.value_type == my_NEGATIVE_INFINITY &&
-              dec2.value_type == my_INFINITY) ||
-             (dec1.value_type == my_NEGATIVE_INFINITY &&
-              dec2.value_type == my_NORMAL_VALUE) ||
-             (dec1.value_type == my_NORMAL_VALUE &&
-              dec2.value_type == my_INFINITY)) {
-    dec.value_type = my_NEGATIVE_INFINITY;
-  } else if (dec1.value_type == my_NORMAL_VALUE &&
-             dec2.value_type == my_NORMAL_VALUE) {
+  if (dec1.value_type == MY_NAN || dec2.value_type == MY_NAN ||
+      (dec1.value_type == MY_INFINITY && dec2.value_type == MY_INFINITY) ||
+      (dec1.value_type == MY_NEGATIVE_INFINITY &&
+       dec2.value_type == MY_NEGATIVE_INFINITY)) {
+    dec.value_type = MY_NAN;
+  } else if ((dec1.value_type == MY_INFINITY &&
+              dec2.value_type == MY_NEGATIVE_INFINITY) ||
+             (dec1.value_type == MY_INFINITY &&
+              dec2.value_type == MY_NORMAL_VALUE) ||
+             (dec1.value_type == MY_NORMAL_VALUE &&
+              dec2.value_type == MY_NEGATIVE_INFINITY)) {
+    dec.value_type = MY_INFINITY;
+  } else if ((dec1.value_type == MY_NEGATIVE_INFINITY &&
+              dec2.value_type == MY_INFINITY) ||
+             (dec1.value_type == MY_NEGATIVE_INFINITY &&
+              dec2.value_type == MY_NORMAL_VALUE) ||
+             (dec1.value_type == MY_NORMAL_VALUE &&
+              dec2.value_type == MY_INFINITY)) {
+    dec.value_type = MY_NEGATIVE_INFINITY;
+  } else if (dec1.value_type == MY_NORMAL_VALUE &&
+             dec2.value_type == MY_NORMAL_VALUE) {
     int dec1_s_sign = my_getSign(dec1);
     int dec2_s_sign = my_getSign(dec2);
     my_decimal_super dec1_s = my_convert_to_super(dec1);
@@ -101,29 +101,29 @@ my_decimal my_mul(my_decimal dec1, my_decimal dec2) {
   my_decimal_super res = DECIMAL_NORMAL_SUPER;
   my_decimal_super dec1_S = my_convert_to_super(dec1);
   int resSign = my_getSign(dec1) ^ my_getSign(dec2);
-  if (dec1.value_type == my_NAN || dec2.value_type == my_NAN) {
-    res_D.value_type = my_NAN;
-  } else if (dec1.value_type == my_INFINITY ||
-             dec2.value_type == my_INFINITY) {
+  if (dec1.value_type == MY_NAN || dec2.value_type == MY_NAN) {
+    res_D.value_type = MY_NAN;
+  } else if (dec1.value_type == MY_INFINITY ||
+             dec2.value_type == MY_INFINITY) {
     if ((!my_decimal_equal_int(dec1, 0) && !dec1.value_type) ||
         (!my_decimal_equal_int(dec2, 0) && !dec2.value_type)) {
-      res_D.value_type = my_NAN;
-    } else if (resSign || dec1.value_type == my_NEGATIVE_INFINITY ||
-               dec2.value_type == my_NEGATIVE_INFINITY) {
-      res_D.value_type = my_NEGATIVE_INFINITY;
+      res_D.value_type = MY_NAN;
+    } else if (resSign || dec1.value_type == MY_NEGATIVE_INFINITY ||
+               dec2.value_type == MY_NEGATIVE_INFINITY) {
+      res_D.value_type = MY_NEGATIVE_INFINITY;
     } else {
-      res_D.value_type = my_INFINITY;
+      res_D.value_type = MY_INFINITY;
     }
-  } else if (dec1.value_type == my_NEGATIVE_INFINITY ||
-             dec2.value_type == my_NEGATIVE_INFINITY) {
+  } else if (dec1.value_type == MY_NEGATIVE_INFINITY ||
+             dec2.value_type == MY_NEGATIVE_INFINITY) {
     if ((!my_decimal_equal_int(dec1, 0) && !dec1.value_type) ||
         (!my_decimal_equal_int(dec2, 0) && !dec2.value_type)) {
-      res_D.value_type = my_NAN;
-    } else if (resSign || (dec1.value_type == my_NEGATIVE_INFINITY &&
-                           dec2.value_type == my_NEGATIVE_INFINITY)) {
-      res_D.value_type = my_INFINITY;
+      res_D.value_type = MY_NAN;
+    } else if (resSign || (dec1.value_type == MY_NEGATIVE_INFINITY &&
+                           dec2.value_type == MY_NEGATIVE_INFINITY)) {
+      res_D.value_type = MY_INFINITY;
     } else {
-      res_D.value_type = my_NEGATIVE_INFINITY;
+      res_D.value_type = MY_NEGATIVE_INFINITY;
     }
   } else if (!my_decimal_equal_int(dec1, 0) ||
              !my_decimal_equal_int(dec2, 0)) {
@@ -145,7 +145,7 @@ my_decimal my_mul(my_decimal dec1, my_decimal dec2) {
     if (!res_D.value_type) {
       my_setSign(&res_D, resSign);
     } else {
-      res_D.value_type = resSign ? my_NEGATIVE_INFINITY : my_INFINITY;
+      res_D.value_type = resSign ? MY_NEGATIVE_INFINITY : MY_INFINITY;
     }
   }
   return res_D;
@@ -155,27 +155,27 @@ my_decimal my_div(my_decimal dec1, my_decimal dec2) {
   my_decimal res = DECIMAL_NORMAL;
   int resSign = my_getSign(dec1) ^ my_getSign(dec2);
   if (dec1.value_type || dec2.value_type) {
-    if ((dec1.value_type && dec2.value_type) || dec1.value_type == my_NAN ||
-        dec2.value_type == my_NAN) {
-      res.value_type = my_NAN;
-    } else if (dec1.value_type == my_INFINITY) {
-      res.value_type = my_getSign(dec2) ? my_NEGATIVE_INFINITY : my_INFINITY;
-    } else if (dec1.value_type == my_NEGATIVE_INFINITY) {
-      res.value_type = my_getSign(dec2) ? my_INFINITY : my_NEGATIVE_INFINITY;
-    } else if (dec2.value_type == my_INFINITY) {
+    if ((dec1.value_type && dec2.value_type) || dec1.value_type == MY_NAN ||
+        dec2.value_type == MY_NAN) {
+      res.value_type = MY_NAN;
+    } else if (dec1.value_type == MY_INFINITY) {
+      res.value_type = my_getSign(dec2) ? MY_NEGATIVE_INFINITY : MY_INFINITY;
+    } else if (dec1.value_type == MY_NEGATIVE_INFINITY) {
+      res.value_type = my_getSign(dec2) ? MY_INFINITY : MY_NEGATIVE_INFINITY;
+    } else if (dec2.value_type == MY_INFINITY) {
       my_setSign(&res, my_getSign(dec1));
-    } else if (dec2.value_type == my_NEGATIVE_INFINITY) {
+    } else if (dec2.value_type == MY_NEGATIVE_INFINITY) {
       my_setSign(&res, !my_getSign(dec1));
     }
   } else if (!my_decimal_equal_int(dec2, 0)) {
     if (!my_decimal_equal_int(dec1, 0)) {
-      res.value_type = my_NAN;
+      res.value_type = MY_NAN;
     } else {
-      res.value_type = resSign ? my_NEGATIVE_INFINITY : my_INFINITY;
+      res.value_type = resSign ? MY_NEGATIVE_INFINITY : MY_INFINITY;
     }
   } else if (!my_decimal_equal_int(dec1, 0)) {
     if (!my_decimal_equal_int(dec2, 0)) {
-      res.value_type = my_NAN;
+      res.value_type = MY_NAN;
     } else {
       resSign ? my_setSign(&res, 1) : my_setSign(&res, 0);
       my_setScale(&res, my_getScale(dec1));
@@ -219,25 +219,25 @@ my_decimal my_div(my_decimal dec1, my_decimal dec2) {
     if (!res.value_type) {
       my_setSign(&res, resSign);
     } else {
-      res.value_type = resSign ? my_NEGATIVE_INFINITY : my_INFINITY;
+      res.value_type = resSign ? MY_NEGATIVE_INFINITY : MY_INFINITY;
     }
   }
   return res;
 }
 
 my_decimal my_mod(my_decimal dec1, my_decimal dec2) {
-  my_decimal oneBitPositive = {{1, 0, 0, 0}, my_NORMAL_VALUE};
-  my_decimal oneBitNegative = {{1, 0, 0, 0}, my_NORMAL_VALUE};
+  my_decimal oneBitPositive = {{1, 0, 0, 0}, MY_NORMAL_VALUE};
+  my_decimal oneBitNegative = {{1, 0, 0, 0}, MY_NORMAL_VALUE};
   my_setSign(&oneBitNegative, 1);
   int resSign = my_getSign(dec1);
   my_setSign(&dec1, 0);
   my_setSign(&dec2, 0);
   int resScale = my_getScale(dec1) >= my_getScale(dec2) ? my_getScale(dec1)
                                                           : my_getScale(dec2);
-  if (dec1.value_type || dec2.value_type == my_NAN ||
+  if (dec1.value_type || dec2.value_type == MY_NAN ||
       (!my_decimal_equal_int(dec2, 0) && !dec2.value_type)) {
     my_decimal_set_default(&dec1);
-    dec1.value_type = my_NAN;
+    dec1.value_type = MY_NAN;
   } else if (!my_decimal_equal_int(dec1, 0)) {
     my_decimal_set_default(&dec1);
   } else if (!my_decimal_equal_int(dec2, 1) ||
@@ -250,8 +250,8 @@ my_decimal my_mod(my_decimal dec1, my_decimal dec2) {
     dec1 = resSign ? oneBitNegative : oneBitPositive;
     my_setSign(&dec1, resSign);
     my_setScale(&dec1, resScale);
-  } else if (dec2.value_type == my_INFINITY ||
-             dec2.value_type == my_NEGATIVE_INFINITY) {
+  } else if (dec2.value_type == MY_INFINITY ||
+             dec2.value_type == MY_NEGATIVE_INFINITY) {
     dec1 = resSign ? oneBitNegative : oneBitPositive;
   } else {
     if (!my_is_greater_or_equal(dec1, dec2)) {
@@ -279,16 +279,16 @@ int my_is_equal(my_decimal dec1, my_decimal dec2) {
   int result = 0;
   int sign_dec1 = my_getSign(dec1);
   int sign_dec2 = my_getSign(dec2);
-  if (dec1.value_type == my_INFINITY && dec2.value_type == my_INFINITY) {
+  if (dec1.value_type == MY_INFINITY && dec2.value_type == MY_INFINITY) {
     result = 0;
-  } else if (dec1.value_type == my_NEGATIVE_INFINITY &&
-             dec2.value_type == my_NEGATIVE_INFINITY) {
+  } else if (dec1.value_type == MY_NEGATIVE_INFINITY &&
+             dec2.value_type == MY_NEGATIVE_INFINITY) {
     result = 0;
-  } else if (dec1.value_type == my_NAN || dec2.value_type == my_NAN ||
-             dec1.value_type == my_INFINITY ||
-             dec2.value_type == my_INFINITY ||
-             dec1.value_type == my_NEGATIVE_INFINITY ||
-             dec2.value_type == my_NEGATIVE_INFINITY) {
+  } else if (dec1.value_type == MY_NAN || dec2.value_type == MY_NAN ||
+             dec1.value_type == MY_INFINITY ||
+             dec2.value_type == MY_INFINITY ||
+             dec1.value_type == MY_NEGATIVE_INFINITY ||
+             dec2.value_type == MY_NEGATIVE_INFINITY) {
     result = 1;
   } else if ((!dec1.bits[0] && !dec1.bits[1] && !dec1.bits[2])
               && (!dec2.bits[0] && !dec2.bits[1] && !dec2.bits[2])) {
@@ -323,7 +323,7 @@ int my_is_less(my_decimal dec1, my_decimal dec2) {
   my_decimal_super dec1_s = my_convert_to_super(dec1);
   my_decimal_super dec2_s = my_convert_to_super(dec2);
   my_equality_scale_super(&dec1_s, &dec2_s);
-  if (dec1.value_type == my_NORMAL_VALUE && dec2.value_type == my_NORMAL_VALUE) {
+  if (dec1.value_type == MY_NORMAL_VALUE && dec2.value_type == MY_NORMAL_VALUE) {
     if (!dec1.bits[0] && !dec1.bits[1] && !dec1.bits[2] && dec1_sign) dec1_sign &= 0;
     if (!dec2.bits[0] && !dec2.bits[1] && !dec2.bits[2] && dec2_sign) dec2_sign &= 0;
     for (int i = SHIGH; i >= NLOW && result; i--) {
@@ -348,12 +348,12 @@ int my_is_less(my_decimal dec1, my_decimal dec2) {
       }
     }
   } else {
-    if ((dec1.value_type == my_NEGATIVE_INFINITY)
-          && ((dec2.value_type != my_NEGATIVE_INFINITY) && (dec2.value_type != my_NAN))) {
+    if ((dec1.value_type == MY_NEGATIVE_INFINITY)
+          && ((dec2.value_type != MY_NEGATIVE_INFINITY) && (dec2.value_type != MY_NAN))) {
       result = 0;
     }
-    if ((dec2.value_type == my_INFINITY) && ((dec1.value_type != my_INFINITY)
-          && (dec1.value_type != my_NAN))) {
+    if ((dec2.value_type == MY_INFINITY) && ((dec1.value_type != MY_INFINITY)
+          && (dec1.value_type != MY_NAN))) {
       result = 0;
     }
   }
@@ -375,7 +375,7 @@ int my_is_greater(my_decimal dec1, my_decimal dec2) {
   my_decimal_super dec1_s = my_convert_to_super(dec1);
   my_decimal_super dec2_s = my_convert_to_super(dec2);
   my_equality_scale_super(&dec1_s, &dec2_s);
-  if (dec1.value_type == my_NORMAL_VALUE && dec2.value_type == my_NORMAL_VALUE) {
+  if (dec1.value_type == MY_NORMAL_VALUE && dec2.value_type == MY_NORMAL_VALUE) {
     if (!dec1.bits[0] && !dec1.bits[1] && !dec1.bits[2] && dec1_sign) dec1_sign &= 0;
     if (!dec2.bits[0] && !dec2.bits[1] && !dec2.bits[2] && dec2_sign) dec2_sign &= 0;
     for (int i = SHIGH; i >= NLOW && result; i--) {
@@ -400,12 +400,12 @@ int my_is_greater(my_decimal dec1, my_decimal dec2) {
       }
     }
   } else {
-    if ((dec2.value_type == my_NEGATIVE_INFINITY)
-          && ((dec1.value_type != my_NEGATIVE_INFINITY) && (dec1.value_type != my_NAN))) {
+    if ((dec2.value_type == MY_NEGATIVE_INFINITY)
+          && ((dec1.value_type != MY_NEGATIVE_INFINITY) && (dec1.value_type != MY_NAN))) {
       result = 0;
     }
-    if ((dec1.value_type == my_INFINITY)
-          && ((dec2.value_type != my_INFINITY) && (dec2.value_type != my_NAN))) {
+    if ((dec1.value_type == MY_INFINITY)
+          && ((dec2.value_type != MY_INFINITY) && (dec2.value_type != MY_NAN))) {
       result = 0;
     }
   }
@@ -435,7 +435,7 @@ int my_from_int_to_decimal(int src, my_decimal *dst) {
 
 int my_from_decimal_to_int(my_decimal src, int *dst) {
   int result = 1;
-  if (src.value_type == my_NORMAL_VALUE) {
+  if (src.value_type == MY_NORMAL_VALUE) {
     src = my_truncate(src);
         if (!src.bits[MID] && !src.bits[HIGH]) {
           if (my_getSign(src) == 1) {
@@ -458,7 +458,7 @@ int my_from_decimal_to_float(my_decimal src, float *dst) {
   int result = 1;
   int srcScale = my_getScale(src);
   int srcSign = my_getSign(src);
-  if (src.value_type == my_NORMAL_VALUE) {
+  if (src.value_type == MY_NORMAL_VALUE) {
     double tmp = 0.0;
     for (int i = 0; i < 96; i++) {
       if (my_getBit(src, i) == 1) {
@@ -486,10 +486,10 @@ int my_from_float_to_decimal(float src, my_decimal *dst) {
   int bitExp = my_getFloatExp(src);
   int resSign = my_getBitFloat(src, 31);
   if (isnan(src)) {
-      dst->value_type = my_NAN;
+      dst->value_type = MY_NAN;
       convertRes = 1;
     } else if (bitExp > 95) {
-      dst->value_type = resSign ? my_NEGATIVE_INFINITY : my_INFINITY;
+      dst->value_type = resSign ? MY_NEGATIVE_INFINITY : MY_INFINITY;
       convertRes = 1;
     } else if (bitExp > -95) {
       if (resSign) src *= -1;
@@ -528,12 +528,12 @@ int my_from_float_to_decimal(float src, my_decimal *dst) {
 /******* Другие функции ********/
 my_decimal my_floor(my_decimal src) {
   my_decimal dec = DECIMAL_NORMAL;
-  if (src.value_type == my_NORMAL_VALUE) {
+  if (src.value_type == MY_NORMAL_VALUE) {
     int srcSign = my_getSign(src);
     dec = my_truncate(src);
     int isNotEqual = my_is_not_equal(src, dec);
     if (srcSign == 1 && isNotEqual == 0) {
-      my_decimal dec_1 = {{1, 0, 0, 0}, my_NORMAL_VALUE};
+      my_decimal dec_1 = {{1, 0, 0, 0}, MY_NORMAL_VALUE};
       dec = my_sub(dec, dec_1);
     }
   } else {
@@ -544,7 +544,7 @@ my_decimal my_floor(my_decimal src) {
 
 my_decimal my_round(my_decimal src) {
   my_decimal dec = DECIMAL_NORMAL;
-  if (src.value_type == my_NORMAL_VALUE) {
+  if (src.value_type == MY_NORMAL_VALUE) {
     dec = src;
     int srcScale = my_getScale(src);
     if (srcScale > 0) {
@@ -567,7 +567,7 @@ my_decimal my_round(my_decimal src) {
         dec = my_truncate(src);
         my_setSign(&dec, 0);
         if (res_sub >= 5 && res_sub <= 9) {
-          my_decimal dec_1 = {{1, 0, 0, 0}, my_NORMAL_VALUE};
+          my_decimal dec_1 = {{1, 0, 0, 0}, MY_NORMAL_VALUE};
           dec = my_add(dec, dec_1);
         }
       }
@@ -581,13 +581,13 @@ my_decimal my_round(my_decimal src) {
 
 my_decimal my_truncate(my_decimal src) {
   my_decimal dst = DECIMAL_NORMAL;
-  if (src.value_type == my_INFINITY) {
-    dst.value_type = my_INFINITY;
-  } else if (src.value_type == my_NEGATIVE_INFINITY) {
-    dst.value_type = my_NEGATIVE_INFINITY;
-  } else if (src.value_type == my_NAN) {
-    dst.value_type = my_NAN;
-  } else if (src.value_type == my_NORMAL_VALUE) {
+  if (src.value_type == MY_INFINITY) {
+    dst.value_type = MY_INFINITY;
+  } else if (src.value_type == MY_NEGATIVE_INFINITY) {
+    dst.value_type = MY_NEGATIVE_INFINITY;
+  } else if (src.value_type == MY_NAN) {
+    dst.value_type = MY_NAN;
+  } else if (src.value_type == MY_NORMAL_VALUE) {
     dst = src;
     int srcScale = my_getScale(src);
     int srcSign = my_getSign(src);
@@ -603,13 +603,13 @@ my_decimal my_truncate(my_decimal src) {
 
 my_decimal my_negate(my_decimal src) {
   my_decimal dst = DECIMAL_NORMAL;
-  if (src.value_type == my_INFINITY) {
-    dst.value_type = my_NEGATIVE_INFINITY;
-  } else if (src.value_type == my_NEGATIVE_INFINITY) {
-    dst.value_type = my_INFINITY;
-  } else if (src.value_type == my_NAN) {
-    dst.value_type = my_NAN;
-  } else if (src.value_type == my_NORMAL_VALUE) {
+  if (src.value_type == MY_INFINITY) {
+    dst.value_type = MY_NEGATIVE_INFINITY;
+  } else if (src.value_type == MY_NEGATIVE_INFINITY) {
+    dst.value_type = MY_INFINITY;
+  } else if (src.value_type == MY_NAN) {
+    dst.value_type = MY_NAN;
+  } else if (src.value_type == MY_NORMAL_VALUE) {
     dst = src;
     int srcSign = my_getSign(src);
     if (srcSign == 0)
@@ -626,7 +626,7 @@ void my_decimal_set_default(my_decimal *decimal) {
   decimal->bits[MID] = 0;
   decimal->bits[HIGH] = 0;
   decimal->bits[SCALE] = 0;
-  decimal->value_type = my_NORMAL_VALUE;
+  decimal->value_type = MY_NORMAL_VALUE;
 }
 
 int my_getBit(my_decimal src, int i) {
@@ -674,13 +674,13 @@ int my_getSign(my_decimal src) {
 /* Умножение decimal на 10 */
 my_decimal my_multi_10(my_decimal src) {
   my_decimal dec = DECIMAL_NORMAL;
-  if (src.value_type == my_NORMAL_VALUE) {
+  if (src.value_type == MY_NORMAL_VALUE) {
     dec.bits[SCALE] = src.bits[SCALE];
     int inf_flag = 0;
     for (int i = 1; i <= 2 && !inf_flag; i++) {
       src = my_move_left(src, i);
-      if (src.value_type == my_NEGATIVE_INFINITY ||
-          src.value_type == my_INFINITY) {
+      if (src.value_type == MY_NEGATIVE_INFINITY ||
+          src.value_type == MY_INFINITY) {
         inf_flag = 1;
       }
       if (!inf_flag) {
@@ -723,9 +723,9 @@ my_decimal my_move_left(my_decimal src, int shift) {
 my_decimal my_decimal_set_inf(int sign) {
   my_decimal dec = DECIMAL_NORMAL;
   if (sign == 0) {
-    dec.value_type = my_INFINITY;
+    dec.value_type = MY_INFINITY;
   } else if (sign == 1) {
-    dec.value_type = my_NEGATIVE_INFINITY;
+    dec.value_type = MY_NEGATIVE_INFINITY;
   }
   return dec;
 }
@@ -796,11 +796,11 @@ void my_equality_scale(my_decimal *dec1, my_decimal *dec2) {
 my_decimal my_increase_scale(int diffScale, my_decimal src) {
   my_decimal dec = src;
   int newScale = my_getScale(src);
-  for (int i = diffScale; i > 0 && dec.value_type == my_NORMAL_VALUE; i--) {
+  for (int i = diffScale; i > 0 && dec.value_type == MY_NORMAL_VALUE; i--) {
     dec = my_multi_10(dec);
     newScale++;
   }
-  if (dec.value_type == my_NORMAL_VALUE) {
+  if (dec.value_type == MY_NORMAL_VALUE) {
     my_setScale(&dec, newScale);
   }
   return dec;
@@ -821,7 +821,7 @@ int my_decimal_equal_int(my_decimal dec, unsigned int value) {
 /*------- super decimal fuctions start -----------*/
 my_decimal_super my_convert_to_super(my_decimal src) {
   my_decimal_super dst = DECIMAL_NORMAL_SUPER;
-  if (src.value_type == my_NORMAL_VALUE) {
+  if (src.value_type == MY_NORMAL_VALUE) {
     for (int i = 0; i < 3; i++) {
       dst.bits[i] = src.bits[i];
     }
@@ -835,7 +835,7 @@ my_decimal_super my_convert_to_super(my_decimal src) {
 my_decimal my_convert_to_decimal(my_decimal_super src_s) {
   my_decimal dec = DECIMAL_NORMAL;
   int sign_src_s = my_getSign_super(src_s);
-  if (src_s.value_type == my_NORMAL_VALUE) {
+  if (src_s.value_type == MY_NORMAL_VALUE) {
     int scale = my_getScale_super(src_s);
     int mod_s = 0;
     for (; scale > 28;) {
@@ -857,7 +857,7 @@ my_decimal my_convert_to_decimal(my_decimal_super src_s) {
     }
     if (!emptyFlag) {
       if (mod_s >= 5 && mod_s <= 9) {
-        my_decimal_super dec_s_1 = {{1, 0, 0, 0, 0, 0, 0}, my_NORMAL_VALUE};
+        my_decimal_super dec_s_1 = {{1, 0, 0, 0, 0, 0, 0}, MY_NORMAL_VALUE};
         my_decimal_super tmp = src_s;
         tmp = my_add_simple_super(tmp, dec_s_1);
         int checkBit96 = my_getBit_super(tmp, 96);
@@ -921,11 +921,11 @@ void my_equality_scale_super(my_decimal_super *dec1_s,
 my_decimal_super my_increase_scale_super(int diffScale, my_decimal_super src_s) {
   my_decimal_super dec_s = src_s;
   int newScale = my_getScale_super(src_s);
-  for (int i = diffScale; i > 0 && dec_s.value_type == my_NORMAL_VALUE; i--) {
+  for (int i = diffScale; i > 0 && dec_s.value_type == MY_NORMAL_VALUE; i--) {
     dec_s = my_multi_10_super(dec_s);
     newScale++;
   }
-  if (dec_s.value_type == my_NORMAL_VALUE) {
+  if (dec_s.value_type == MY_NORMAL_VALUE) {
     my_setScale_super(&dec_s, newScale);
   }
   return dec_s;
@@ -933,13 +933,13 @@ my_decimal_super my_increase_scale_super(int diffScale, my_decimal_super src_s) 
 
 my_decimal_super my_multi_10_super(my_decimal_super src_s) {
   my_decimal_super dec_s = DECIMAL_NORMAL_SUPER;
-  if (src_s.value_type == my_NORMAL_VALUE) {
+  if (src_s.value_type == MY_NORMAL_VALUE) {
     dec_s.bits[SSCALE] = src_s.bits[SSCALE];
     int inf_flag = 0;
     for (int i = 1; i <= 2 && !inf_flag; i++) {
       src_s = my_move_left_super(src_s, i);
-      if (src_s.value_type == my_NEGATIVE_INFINITY ||
-          src_s.value_type == my_INFINITY) {
+      if (src_s.value_type == MY_NEGATIVE_INFINITY ||
+          src_s.value_type == MY_INFINITY) {
         inf_flag = 1;
       }
       if (!inf_flag) {
@@ -997,17 +997,17 @@ my_decimal_super my_move_left_super(my_decimal_super src_s, int shift) {
 my_decimal_super my_super_set_inf(int sign) {
   my_decimal_super dec_s = DECIMAL_NORMAL_SUPER;
   if (sign == 0) {
-    dec_s.value_type = my_INFINITY;
+    dec_s.value_type = MY_INFINITY;
   } else if (sign == 1) {
-    dec_s.value_type = my_NEGATIVE_INFINITY;
+    dec_s.value_type = MY_NEGATIVE_INFINITY;
   }
   return dec_s;
 }
 
 my_decimal_super my_add_simple_super(my_decimal_super dec1_s, my_decimal_super dec2_s) {
   my_decimal_super dec_s = DECIMAL_NORMAL_SUPER;
-  if (dec1_s.value_type == my_NORMAL_VALUE &&
-      dec2_s.value_type == my_NORMAL_VALUE) {
+  if (dec1_s.value_type == MY_NORMAL_VALUE &&
+      dec2_s.value_type == MY_NORMAL_VALUE) {
     int tmp = 0;
     for (int i = 0; i < 192; i++) {
       int dec1Bit = my_getBit_super(dec1_s, i);
@@ -1045,7 +1045,7 @@ my_decimal_super my_add_simple_super(my_decimal_super dec1_s, my_decimal_super d
 }
 
 my_decimal_super my_sub_simple_super(my_decimal_super dec1_s, my_decimal_super dec2_s) {
-  my_decimal_super dec_1_s = {{1, 0, 0, 0, 0, 0, 0}, my_NORMAL_VALUE};
+  my_decimal_super dec_1_s = {{1, 0, 0, 0, 0, 0, 0}, MY_NORMAL_VALUE};
   my_decimal_super tmp_s = DECIMAL_NORMAL_SUPER;
   int signFlag = my_is_greater_or_equal_super(dec1_s, dec2_s);
   tmp_s.bits[NLOW] = ~dec2_s.bits[NLOW];
